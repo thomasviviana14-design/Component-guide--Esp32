@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Learning Guide</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-dark: #0f172a;
+            --text-light: #475569;
+            --bg-gray: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .badge {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        /* Layout Container */
+        .main-wrapper {
+            max-width: 1300px; /* Wider container for bigger images */
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        /* General Section Styling */
+        .section {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 120px; /* Increased space between sections */
+            align-items: flex-start;
+        }
+
+        .text-content {
+            flex: 1; /* Adjusted ratio to allow images to be bigger */
+        }
+
+        .visual-content {
+            flex: 1.2; /* Image section is now slightly larger than text section */
+            position: sticky;
+            top: 40px;
+        }
+
+        h1, h2, h3 {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-top: 0;
+        }
+
+        h1 { font-size: 3rem; border-bottom: 3px solid var(--primary-color); display: inline-block; margin-bottom: 30px; }
+        h2 { font-size: 2rem; margin-bottom: 20px; }
+
+        p { font-size: 1.1rem; color: var(--text-light); }
+
+        .image-box {
+            background: var(--bg-gray);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-box img {
+            width: 100%; /* Forces image to fill the enlarged container */
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .caption {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Pin List Styling */
+        .pin-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pin-list li {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--bg-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .pin-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .section { flex-direction: column; }
+            .visual-content { position: static; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="badge">Get ready to learn</div>
+
+    <div class="main-wrapper">
+        
+        <!-- Header Section -->
+        <h1>ESP32 Microcontroller</h1>
+
+        <!-- Section 1: Intro and Main Photo -->
+        <div class="section">
+            <div class="visual-content">
+                <div class="image-box">
+                    <img src="Esp32.jpg" alt="Large View of ESP32 Development Board">
+                    <div class="caption">The ESP32 Board: A powerful dual-core IoT solution</div>
+                </div>
+            </div>
+            
+            <div class="text-content">
+                <h2>Introduction</h2>
+                <p>
+                    The ESP32 is a low-cost, low-power "System on a Chip" with integrated Wi-Fi and dual-mode Bluetooth. Think of it as a much faster, more capable version of the Arduino that can connect to the internet right out of the box. It is designed for mobile devices, wearable electronics, and Internet of Things (IoT) applications.
+                </p>
+
+                <h2>How it Works</h2>
+                <p>
+                    Inside the chip is a Dual-Core processor. One core can handle your Wi-Fi connection and data security, while the other core runs your specific code (like reading a sensor). It takes electricity and follows the instructions you write in languages like C++ or Python to control the electronic pins on its sides.
+                </p>
+
+                <h2>How it is Used</h2>
+                <p>
+                    Because it is small and wireless, it is used for home automation (controlling lights with your phone), industrial monitoring (checking machine temperature remotely), and even simple robotics. It is the perfect bridge between physical hardware and the digital internet.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 2: Pin Diagram and Guide -->
+        <div class="section">
+            <div class="visual-content">
+                <div class="image-box">
+                    <img src="Esp32-Pindiaagram.jpg" alt="Large ESP32 Pinout Map">
+                    <div class="caption">Detailed Pinout Diagram for Wiring and Reference</div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <h2>Understanding the Pins</h2>
+                <p>Each pin on the ESP32 acts as a gateway. Here is a simple breakdown of what they do:</p>
+                
+                <ul class="pin-list">
+                    <li><span class="pin-label">EN:</span> The Reset button used to restart your program.</li>
+                    <li><span class="pin-label">VCC / 5V:</span> The main power input pin for the board.</li>
+                    <li><span class="pin-label">3.3V:</span> Power output pin to provide steady voltage to sensors.</li>
+                    <li><span class="pin-label">GND:</span> The common ground to complete your electrical circuits.</li>
+                    <li><span class="pin-label">GPIO:</span> General pins for connecting buttons, LEDs, and sensors.</li>
+                    <li><span class="pin-label">ADC:</span> Reads analog signals (like light or temperature levels).</li>
+                    <li><span class="pin-label">DAC:</span> Sends out true analog voltage signals.</li>
+                    <li><span class="pin-label">Touch:</span> Pins that detect human touch without mechanical buttons.</li>
+                    <li><span class="pin-label">TX / RX:</span> Communication pins for talking to your computer.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
